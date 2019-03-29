@@ -1,15 +1,19 @@
 package com.bootcamp.e_wallet.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name="TransactionType")
 @Table(name="tbl_transaction_type")
 public class TransactionTypeEntity {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="transaction_type")
@@ -33,5 +37,6 @@ public class TransactionTypeEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	
 }

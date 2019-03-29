@@ -7,6 +7,8 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.bootcamp.e_wallet.model.AccountEntity;
 import com.bootcamp.e_wallet.model.CustomerEntity;
+import com.bootcamp.e_wallet.model.TransactionEntity;
+import com.bootcamp.e_wallet.model.TransactionTypeEntity;
 
 public class Connect {
 	
@@ -19,6 +21,8 @@ public class Connect {
 		config.configure();
 		config.addAnnotatedClass(CustomerEntity.class);
 		config.addAnnotatedClass(AccountEntity.class);
+		config.addAnnotatedClass(TransactionEntity.class);
+		config.addAnnotatedClass(TransactionTypeEntity.class);
 //		config.addResource("query.hbm.xml");
 //		config.addResource("Customer.hbm.xml");
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();

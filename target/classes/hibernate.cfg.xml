@@ -9,5 +9,10 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="show_sql">true</property>
+		<property name="hibernate.id.new_generator_mappings">false</property>
+		
+		<mapping class="com.bootcamp.e_wallet.model.TransactionEntity"/>
+		<mapping class="com.bootcamp.e_wallet.model.TransactionTypeEntity"/>
 	</session-factory>
 </hibernate-configuration>

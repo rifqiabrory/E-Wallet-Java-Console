@@ -10,8 +10,11 @@ import java.util.Random;
 import com.bootcamp.e_wallet.config.Connect;
 import com.bootcamp.e_wallet.controller.AccountController;
 import com.bootcamp.e_wallet.controller.CustomerController;
+import com.bootcamp.e_wallet.controller.TransactionController;
 import com.bootcamp.e_wallet.model.AccountEntity;
 import com.bootcamp.e_wallet.model.CustomerEntity;
+import com.bootcamp.e_wallet.model.TransactionEntity;
+import com.bootcamp.e_wallet.model.TransactionTypeEntity;
 
 /**
  * Main App
@@ -20,16 +23,19 @@ import com.bootcamp.e_wallet.model.CustomerEntity;
 
 public class App 
 {
-	private static CustomerController customerController = new CustomerController();
-	private static AccountController accountController = new AccountController();
-//	private static SessionFactory sessionFactory;
-//	private static SessionFactory factory;
-//  private static ServiceRegistry serviceRegistry;
-	// obj input etc.
-	private static InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-	private static BufferedReader input = new BufferedReader(inputStreamReader);
+	//model
 	private static CustomerEntity customer = new CustomerEntity();
 	private static AccountEntity account = new AccountEntity();
+	private static TransactionEntity transaction = new TransactionEntity();
+	private static TransactionTypeEntity transactionType = new TransactionTypeEntity();
+	//controller
+	private static CustomerController customerController = new CustomerController();
+	private static AccountController accountController = new AccountController();
+	private static TransactionController transactionController = new TransactionController();
+	//scanner
+	private static InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+	private static BufferedReader input = new BufferedReader(inputStreamReader);
+	
 	public App(Connect conn) {
 		Connect connection = (Connect) Connect.getConnection();
 	}
@@ -164,7 +170,7 @@ public class App
 				break;
 			}
 			case 1: {
-				
+				getTopUp();
 				break;
 			}
 			case 2: {
@@ -188,6 +194,37 @@ public class App
 		} catch (Exception e) {
 			System.out.println("This field can't empty!");
 			mainMenu();
+		}
+	}
+
+	private static void getTopUp() {
+		try {
+			int transType = 1;
+			System.out.println();
+			System.out.println("=============================== Top Up =============================");
+			System.out.println("___________________________________________________________________");
+			System.out.println();
+			System.out.print("Account Number     : ");
+			int accountNumber = Integer.parseInt(input.readLine());
+			System.out.print("Top Up Amount      : ");
+			int amount = Integer.parseInt(input.readLine());
+			int anCredit = 0;
+			Date date = new Date();
+			TransactionEntity topUp = new TransactionEntity();
+			topUp.setDate(date);
+			topUp.setAnDebit(accountNumber);
+			topUp.setAnCredit(anCredit);
+			topUp.setAmount(amount);
+			topUp.setTransactionType(transType);
+			
+			transactionController.addTransactionTopUp(topUp);
+			//showmenu
+			menuTrans();
+			
+		} catch (Exception e) {
+			// e.printStackTrace();
+			System.out.print("This field is can't empty!");
+			menuTrans();
 		}
 	}
 

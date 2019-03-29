@@ -1,6 +1,6 @@
 package com.bootcamp.e_wallet.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,9 +38,8 @@ public class TransactionEntity {
 	@Column(name="amount")
 	private double amount;
 	
-	@ManyToOne
-	@JoinColumn(name="transaction_type")
-	private TransactionTypeEntity transactionType;
+	@Column(name="transaction_type")
+	private int transactionType;
 
 	public int getIdTransaction() {
 		return idTransaction;
@@ -82,13 +81,12 @@ public class TransactionEntity {
 		this.amount = amount;
 	}
 
-	public TransactionTypeEntity getTransactionType() {
+	public int getTransactionType() {
 		return transactionType;
 	}
 
-	public void setTransactionType(TransactionTypeEntity transactionType) {
+	public void setTransactionType(int transactionType) {
 		this.transactionType = transactionType;
 	}
 	
-
 }

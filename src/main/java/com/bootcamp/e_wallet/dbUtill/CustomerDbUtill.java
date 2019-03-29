@@ -17,9 +17,8 @@ public class CustomerDbUtill {
 	private static SessionFactory sessionFactory;
 	private static ServiceRegistry serviceRegistry;
 
-		
-	public CustomerDbUtill(SessionFactory sessFact) {
-		sessionFactory = sessFact;
+	public CustomerDbUtill(SessionFactory connection) {
+		sessionFactory = connection;
 	}
 
 	public List<CustomerEntity> getAllCustomer() {
